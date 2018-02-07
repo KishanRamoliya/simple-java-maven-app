@@ -5,6 +5,7 @@ pipeline {
             args '-v /root/.m2:/root/.m2' 
         }
     }
+	
     stages {
         stage('Build') { 
             steps {
@@ -25,7 +26,7 @@ pipeline {
 		
 		stage('Deliver for development') {
             when {
-                branch 'development' 
+                branch 'dev' 
             }
             steps {
                 sh './jenkins/scripts/deliver-for-development.sh'
@@ -33,9 +34,10 @@ pipeline {
                 sh './jenkins/scripts/kill.sh'
             }
         }
+	    
         stage('Deploy for production') {
             when {
-                branch 'production'  
+                branch 'prod'  
             }
             steps {
                 sh './jenkins/scripts/deploy-for-production.sh'
@@ -43,5 +45,6 @@ pipeline {
                 sh './jenkins/scripts/kill.sh'
             }
         }
+	    
     }
 }
