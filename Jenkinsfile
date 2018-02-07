@@ -29,7 +29,7 @@ pipeline {
                 branch 'dev' 
             }
             steps {
-                sh './jenkins/scripts/deliver-for-development.sh'
+		sh './jenkins/scripts/deliver.sh'
                 
                 sh './jenkins/scripts/kill.sh'
             }
@@ -40,7 +40,7 @@ pipeline {
                 branch 'prod'  
             }
             steps {
-                sh './jenkins/scripts/deploy-for-production.sh'
+                sh './jenkins/scripts/deliver.sh'
                 
                 sh './jenkins/scripts/kill.sh'
             }
